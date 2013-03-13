@@ -3,7 +3,7 @@ $config = array(
 	/* 
 		The site's name.
 	*/
-	'site_name'  => 'PoE Market',
+	'site_name' => 'PoE Market',
 
 	/*
 		The site's revision number.
@@ -39,7 +39,7 @@ $config = array(
 	<?php
 	return array(
 		'update_secret' => 'myrandomsecretstring',
-		'site_name' => 'PoE Market Staging',
+		'site_name'     => 'PoE Market Staging',
 	);
 	?>
 */
