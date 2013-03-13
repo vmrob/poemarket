@@ -3,7 +3,7 @@
 
 <div id="footer">
 	<div class="container">
-		<p><?= exec('git log -1 --format="%H %ar"') ?></p>
+		<p><?= $this->site_revision ?></p>
 	</div>
 </div>
 
