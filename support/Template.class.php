@@ -14,7 +14,7 @@ class Template {
 	function __invoke() {
 		require dirname(dirname(__FILE__)).'/templates/'.$this->name.'.tpl.php';
 	}
-	
+
 	static function Render($name, $args = array()) {
 		$tpl = new Template($name, $args);
 		$tpl();
