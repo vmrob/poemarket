@@ -1,3 +1,5 @@
 <?php
-return array();
+return array(
+	'site_name' => 'PoE Market',
+);
 ?>

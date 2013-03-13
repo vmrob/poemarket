@@ -1,9 +1,9 @@
 <?php
 class Template {
-	var $file, $args;
+	var $name, $args;
 
-	function Template($file, $args = array()) {
-		$this->file = $file;
+	function Template($name, $args = array()) {
+		$this->name = $name;
 		$this->args = $args;
 	}
 
@@ -12,11 +12,11 @@ class Template {
 	}
 
 	function __invoke() {
-		require dirname(dirname(__FILE__)).'/templates/'.$this->file.'.tpl.php';
+		require dirname(dirname(__FILE__)).'/templates/'.$this->name.'.tpl.php';
 	}
 	
-	static function Render($file, $args = array()) {
-		$tpl = new Template($file, $args);
+	static function Render($name, $args = array()) {
+		$tpl = new Template($name, $args);
 		$tpl();
 	}
 }
