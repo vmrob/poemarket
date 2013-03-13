@@ -2,9 +2,10 @@
 $config = array(
 	'site_name'  => 'PoE Market',
 	'git_secret' => '',
+	'debug_mode' => false,
 );
 
-@include('SECRETS.inc.php');
+@include('local_config.inc.php');
 
 return $config;
 ?>
