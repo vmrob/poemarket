@@ -5,5 +5,6 @@ function __autoload($class) {
 
 require_once 'functions.inc.php';
 
-$_ = new Application();
+$config = require('config.inc.php');
+$_ = new Application($config);
 ?>
