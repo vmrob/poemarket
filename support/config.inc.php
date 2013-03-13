@@ -4,7 +4,7 @@ $config = array(
 	'git_secret' => '',
 );
 
-@include('local_config.inc.php');
+$local = @include('local_config.inc.php');
 
-return $config;
+return $local ? array_merge($config, $local) : $config;
 ?>
