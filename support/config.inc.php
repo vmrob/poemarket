@@ -17,7 +17,7 @@ $config = array(
 		using a git repo, you can send the request in a post-receive hook.
 		
 		You need to ensure that your web server has write access to the site's root directory and all of 
-		its contents.
+		its contents. You probably also need to ensure that safe mode is disabled.
 	 */
 	'update_secret' => '',
 	
