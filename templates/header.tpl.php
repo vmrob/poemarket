@@ -15,8 +15,8 @@
 		<div class="container">
 			<a class="brand" href="index.php"><?= htmlspecialchars($this->site_name) ?></a>
 			<ul class="nav">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="login.php">Log In</a></li>
+				<li<?= basename($_SERVER['SCRIPT_NAME']) == 'index.php' ? ' class="active"' : '' ?>><a href="index.php">Home</a></li>
+				<li<?= basename($_SERVER['SCRIPT_NAME']) == 'login.php' ? ' class="active"' : '' ?>><a href="login.php">Log In</a></li>
 			</ul>
 		</div>
 	</div>
