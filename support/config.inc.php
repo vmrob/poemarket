@@ -8,7 +8,12 @@ $config = array(
 	/*
 		The site's revision number.
 	*/
-	'site_revision' => exec('git log -1 --format="%H %ar"'),
+	'site_revision_number' => exec('git log -1 --format="%H"'),
+
+	/*
+		The site's revision time.
+	*/
+	'site_revision_time' => exec('git log -1 --format="%ar"'),
 
 	/*
 		If you want this installation to automatically update itself, set this to a random, secret string.
@@ -24,10 +29,10 @@ $config = array(
 	/*
 		If the 'update_secret' configuration option is set, this command will be executed when update.php 
 		receives a request using the correct secret. It's executed from the directory of update.php. If 
-		you're using a git repo, you probably don't need to change this. It's recommended that the output 
-		be redirected and the command backgrounded so update.php can finish execution without waiting.
+		you're using a git repo, you probably don't need to change this. Update operations are performed 
+		following this, so don't background anything crucial.
 	*/
-	'update_command' => '(cd ../ && git checkout master && git pull origin master && git clean -fd) &> /dev/null &',
+	'update_command' => 'cd ../ && git checkout master && git pull origin master && git clean -fd',
 );
 
 /*

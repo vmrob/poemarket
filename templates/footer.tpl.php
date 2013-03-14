@@ -3,7 +3,7 @@
 
 <div id="footer">
 	<div class="container">
-		<p><?= $this->site_revision ?></p>
+		<p><?= htmlspecialchars($this->site_revision_number.' '.$this->site_revision_time) ?></p>
 	</div>
 </div>
 
