@@ -2,6 +2,7 @@
 require_once dirname(dirname(__FILE__)).'/support/startup.inc.php';
 
 if ($_->config['update_secret'] && isset($_GET['secret']) && $_GET['secret'] == $_->config['update_secret']) {
+	// TODO: make updates seamless and more robust
 	ignore_user_abort(true);
 	set_time_limit(0);
 	$lock_html = 'Eek! You caught us doing something embarrassing! The site\'s being updated, but it\'ll be done soon. Sorry you had to see us this way.';
