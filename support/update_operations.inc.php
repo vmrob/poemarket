@@ -16,6 +16,6 @@ return array(
 				PRIMARY KEY (`user_id`)
 			) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 		');
-	}
+	},
 );
 ?>
