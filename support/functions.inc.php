@@ -14,6 +14,27 @@ function render_page($template, $title, $args = array()) {
 	Template::Render('footer',  $args);
 }
 
+function try_site_lock($lock_html) {
+	$lock_file = fopen(dirname(__FILE__).'/lock.html', 'x');
+
+	if ($lock_file) {
+		fwrite($lock_file, $lock_html);
+		fclose($lock_file);
+		return TRUE;
+	}
+	
+	return FALSE;
+}
+
+function site_unlock() {
+	unlink(dirname(__FILE__).'/lock.html');
+}
+
+function site_lock_html() {
+	return file_get_contents(dirname(__FILE__).'/lock.html');
+}
+
+// the site should always be locked when perform_update_operations() is called
 function perform_update_operations() {
 	// TODO: perform update operations
 }
