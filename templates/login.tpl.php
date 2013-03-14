@@ -13,10 +13,9 @@
 		</div>
 		<div class="span4">
 			<form>
-				<h2>Log In</h2>
-				<input type="text" class="input-block-level" placeholder="email address" />
-				<input type="password" class="input-block-level" placeholder="password" />
-				<button class="btn btn-large btn-primary" type="submit">Sign in</button>
+				<input type="text" class="input-block-level" placeholder="email address" name="email" />
+				<input type="password" class="input-block-level" placeholder="password" name="password" />
+				<button class="btn btn-large btn-primary" type="submit" name="login">Log In</button>
 			</form>
 		</div>
 	</div>
