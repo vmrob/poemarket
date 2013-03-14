@@ -1,7 +1,7 @@
 <?php
 require_once dirname(dirname(__FILE__)).'/support/startup.inc.php';
 
-$data = array();
+$data = array('error' => NULL);
 
 if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {	
 	$ch = curl_init();

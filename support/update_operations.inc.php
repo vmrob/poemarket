@@ -14,7 +14,6 @@ return array(
 				PRIMARY KEY (`key`)
 			) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 		");
-		$app->SQL->query("DROP TABLE {$app->config['mysql_table_prefix']}users");
 		$app->SQL->query("
 			CREATE TABLE `{$app->config['mysql_table_prefix']}users` (
 				`user_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
