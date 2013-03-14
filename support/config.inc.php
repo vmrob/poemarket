@@ -29,6 +29,12 @@ $config = array(
 		Your MySQL password.
 	*/
 	'mysql_password' => 'mypassword',
+	
+	/*
+		All tables are prefixed with this. If you change this after creating the site, make sure you 
+		rename all the tables in your database accordingly.
+	*/
+	'mysql_table_prefix' => 'poem',
 
 	/*
 		If you want this installation to automatically update itself, set this to a random, secret string.
