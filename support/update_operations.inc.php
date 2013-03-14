@@ -8,7 +8,7 @@
 return array(
 	function($app) {
 		$app->SQL->query('
-			CREATE TABLE `poem_users` (
+			CREATE TABLE `'.$app->config['mysql_table_prefix'].'_users` (
 				`user_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 				`user_email` int(11) DEFAULT NULL,
 				`user_poe_session` varchar(60) DEFAULT NULL,
