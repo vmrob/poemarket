@@ -37,9 +37,10 @@ $config = array(
 	
 	/*
 		All tables are prefixed with this. If you change this after creating the site, make sure you 
-		rename all the tables in your database accordingly.
+		rename all the tables in your database accordingly. This isn't escaped so don't use special 
+		characters.
 	*/
-	'mysql_table_prefix' => 'poem',
+	'mysql_table_prefix' => 'poem_',
 
 	/*
 		If you want this installation to automatically update itself, set this to a random, secret string.

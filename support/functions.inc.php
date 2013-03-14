@@ -43,4 +43,41 @@ function post_value_attrib($name, $default = NULL) {
 		return '';
 	}
 }
+
+function get_key_value($key, $default = NULL) {
+	global $_;
+	$result = $_->SQL->query("SELECT value FROM {$_->config['mysql_table_prefix']}key_value WHERE `key` = '".$_->SQL->escape_string($key)."'");
+	return $_->SQL->num_rows($result) < 1 ? $default : $_->SQL->result($result, 0);
+}
+
+function set_key_value($key, $value) {
+	global $_;
+	$_->SQL->query("INSERT INTO {$_->config['mysql_table_prefix']}key_value (`key`, `value`) VALUES ('".$_->SQL->escape_string($key)."', '".$_->SQL->escape_string($value)."') ON DUPLICATE KEY UPDATE `value` = '".$_->SQL->escape_string($value)."'");
+}
+
+function last_update_operation_index() {
+	global $_;
+	$result = $_->SQL->query("SELECT table_name FROM information_schema.tables WHERE table_schema = '".$_->SQL->escape_string($_->config['mysql_database'])."' AND table_name = '{$_->config['mysql_table_prefix']}key_value'");
+	if ($_->SQL->num_rows($result) < 1) {
+		// table doesn't exist. assume database isn't initialized
+		return -1;
+	}
+	return intval(get_key_value('last_update_operation_index', -1));
+}
+
+function needs_update_operations() {
+	return last_update_operation_index() + 1 < count((require('update_operations.inc.php')));
+}
+
+function perform_update_operations() {
+	global $_;
+
+	$ops = require('update_operations.inc.php');
+
+	for ($i = last_update_operation_index() + 1; $i < count($ops); ++$i) {
+		$ops[$i]($_);
+	}
+	
+	set_key_value('last_update_operation_index', count($ops) - 1);
+}
 ?>
