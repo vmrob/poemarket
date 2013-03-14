@@ -31,6 +31,11 @@ $config = array(
 	'mysql_password' => 'mypassword',
 	
 	/*
+		Your MySQL database.
+	*/
+	'mysql_database' => 'poemarket',
+	
+	/*
 		All tables are prefixed with this. If you change this after creating the site, make sure you 
 		rename all the tables in your database accordingly.
 	*/
