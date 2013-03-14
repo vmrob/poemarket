@@ -2,19 +2,19 @@
 class SQL {
 	var $db_link, $num_queries, $queries;
 
-	function SQL($host, $username, $password, $pconnect) {
+	function SQL($host, $username, $password, $pconnect = FALSE) {
 		 $connect_func      = $pconnect ? 'mysql_pconnect' : 'mysql_connect';
-		 $this->db_link     = $connect_func($host, $username, $password) or $this->die_error('SQL');
+		 $this->db_link     = $connect_func($host, $username, $password);
 		 $this->num_queries = 0;
 		 $this->queries     = array();
 	}
 
 	function select_db($database) {
-		mysql_select_db($database, $this->db_link) or $this->die_error('select_db');
+		mysql_select_db($database, $this->db_link) or $this->throw_error('select_db');
 	}
 
 	function query($query) {
-		$result = mysql_query($query, $this->db_link) or $this->die_error('query', $query);
+		$result = mysql_query($query, $this->db_link) or $this->throw_error('query', $query);
 
 		$this->num_queries++;
 		return $result;
@@ -91,7 +91,7 @@ class SQL {
 		return mysql_real_escape_string($unescaped_string);
 	}
 
-	function die_error($function, $note = null) {
+	function throw_error($function, $note = null) {
 		$error_note = $function.':'.(isset($note) ? " {$note}" : '')."\n\n".mysql_errno($this->db_link).':'.mysql_error($this->db_link);
 
 		trigger_error($error_note, E_USER_ERROR);

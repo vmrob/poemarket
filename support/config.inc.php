@@ -14,6 +14,21 @@ $config = array(
 		The site's revision time.
 	*/
 	'site_revision_time' => exec('git log -1 --format="%ar"'),
+	
+	/*
+		Your MySQL server. Often it's simply 'localhost'.
+	*/
+	'mysql_host' => 'localhost',
+	
+	/*
+		Your MySQL username.
+	*/
+	'mysql_username' => 'myusername',
+	
+	/*
+		Your MySQL password.
+	*/
+	'mysql_password' => 'mypassword',
 
 	/*
 		If you want this installation to automatically update itself, set this to a random, secret string.
