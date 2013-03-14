@@ -6,9 +6,12 @@ if ($_->config['update_secret'] && isset($_GET['secret']) && $_GET['secret'] == 
 	set_time_limit(0);
 	$lock_html = 'Eek! You caught us doing something embarrassing! The site\'s being updated, but it\'ll probably be done by the time you finish reading this. Sorry you had to see us this way.';
 	if (try_site_lock($lock_html)) {
-		$ops = require(dirname(dirname(__FILE__)).'/support/update_operations.inc.php');
+		$old_ops = require(dirname(dirname(__FILE__)).'/support/update_operations.inc.php');
 		exec($_->config['update_command']);
-		perform_update_operations();
+		$new_ops = require(dirname(dirname(__FILE__)).'/support/update_operations.inc.php');
+		for ($i = count($old_ops); $i < count($new_ops); ++$i) {
+			$new_ops[$i]($_);
+		}
 		site_unlock();
 	}
 	die('Thanks bro!');

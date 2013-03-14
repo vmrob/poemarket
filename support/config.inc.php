@@ -33,14 +33,13 @@ $config = array(
 	/*
 		If you want this installation to automatically update itself, set this to a random, secret string.
 		Then, when the server should update, send a request to update.php, passing this string as GET 
-		parameter 'secret' (e.g. http://example.com/update.php?secret=myrandomsecretstring). If you're 
-		using a git repo, you can send the request in a post-receive hook.
+		parameter 'secret' (e.g. http://example.com/update.php?secret=myrandomsecretstring).
 		
 		You need to ensure that your web server has write access to the site's root directory and all of 
 		its contents. You probably also need to ensure that safe mode is disabled.
 	 */
 	'update_secret' => '',
-	
+
 	/*
 		If the 'update_secret' configuration option is set, this command will be executed when update.php 
 		receives a request using the correct secret. It's executed from the directory of update.php. If 

@@ -34,15 +34,6 @@ function site_lock_html() {
 	return @file_get_contents(dirname(__FILE__).'/lock.html');
 }
 
-// the site should always be locked when perform_update_operations() is called
-// it's recommended that execution end after the call to eliminate risk of bad 
-// things (e.g. infinite, uninterruptable loops)
-function perform_update_operations() {
-	ignore_user_abort(true);
-	set_time_limit(0);
-	// TODO: perform update operations
-}
-
 function post_value_attrib($name, $default = NULL) {
 	if (isset($_POST[$name])) {
 		return ' value="'.htmlspecialchars($_POST[$name]).'"';
