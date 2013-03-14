@@ -10,7 +10,7 @@ if ($_->config['update_secret'] && isset($_GET['secret']) && $_GET['secret'] == 
 		$old_ops = require(dirname(dirname(__FILE__)).'/support/update_operations.inc.php');
 		exec($_->config['update_command']);
 		$new_config = require(dirname(dirname(__FILE__)).'/support/config.inc.php');
-		if ($new_config['site_revision'] != $_->config['site_revision']) {
+		if ($new_config['site_revision_number'] != $_->config['site_revision_number']) {
 			// yep, revision definitely changed. check for update ops
 			$new_ops = require(dirname(dirname(__FILE__)).'/support/update_operations.inc.php');
 			if (count($old_ops) < count($new_ops)) {
