@@ -2,6 +2,8 @@
 class SQL {
 	var $db_link, $num_queries, $queries;
 
+	// TODO: switch to mysqli
+
 	function SQL($host, $username, $password, $pconnect = FALSE) {
 		 $connect_func      = $pconnect ? 'mysql_pconnect' : 'mysql_connect';
 		 $this->db_link     = $connect_func($host, $username, $password);
