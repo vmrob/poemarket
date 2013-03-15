@@ -37,6 +37,11 @@ class Application {
 		setcookie('auth', "$username|$time|$hash",  $time + 60 * 60 * 24 * 90);
 	}
 	
+	function log_out() {
+		setcookie('auth', '',  time() - 3600);
+		$this->user = NULL;
+	}
+	
 	function check_authentication() {
 		if (!isset($_COOKIE['auth'])) {
 			return;

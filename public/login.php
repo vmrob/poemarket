@@ -14,7 +14,7 @@ if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {
 		'login' => 'Login',
 		'login_email' => $_POST['email'],
 		'login_password' => $_POST['password'], 
-		'remember_me' => 0,
+		'remember_me' => 1,
 	));
 
 	// on success we get redirected

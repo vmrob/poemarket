@@ -31,6 +31,11 @@ if (needs_update_operations()) {
 	die('That\'s odd. Hopefully this message will go away soon...');
 }
 
-// see if the user is logged in
-$_->check_authentication();
+if (isset($_GET['logout'])) {
+	// log the user out
+	$_->log_out();
+} else {
+	// see if the user is logged in
+	$_->check_authentication();
+}
 ?>
