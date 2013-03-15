@@ -1,35 +1,27 @@
 <?php
 require_once dirname(dirname(__FILE__)).'/support/startup.inc.php';
 
-$data = array('error' => NULL);
+$data = array();
 
 if (isset($_POST['login'], $_POST['email'], $_POST['password'])) {	
-	$ch = curl_init();
-
-	$fields = array(
+	$response = http_request('https://www.pathofexile.com/login', array(
 		'login' => 'Login',
 		'login_email' => $_POST['email'],
 		'login_password' => $_POST['password'], 
-		'remember_me' => 1,
-	);
-	
-	curl_setopt_array($ch, array(
-		CURLOPT_URL => 'https://www.pathofexile.com/login',
-		CURLOPT_POST => 1,
-		CURLOPT_HEADER => 0,
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_TIMEOUT => 5,
-		CURLOPT_POSTFIELDS => $fields,
+		'remember_me' => 0,
 	));
 	
-	$result = curl_exec($ch);
-	$info   = curl_getinfo($ch);
-
-	curl_close($ch);
-	
-	if ($info && $info['http_code'] == 302 && $info['redirect_url'] == 'http://www.pathofexile.com/my-account') {
-		// success!
-		$data['error'] = 'This isn\'t finished yet. Nice password though. ;)';
+	// on success we get redirected
+	if ($response && $response['http_code'] == 200 && $response['url'] == 'http://www.pathofexile.com/my-account') {
+		// looks like success...
+		$matches = array();
+		preg_match('/class="profile-name">([a-zA-Z0-9_]+)</', $response['content'], $matches);
+		if (count($matches) < 2) {
+			$data['error'] = 'An error occurred. It wasn\'t your fault though. Most likely the Path of Exile website has changed in a way that we haven\'t accounted for yet. Please try again later.';
+		} else {
+			// yep, success
+			$data['error'] = 'This isn\'t finished yet. Nice password though, '.$matches[1].'. ;)';
+		}
 	} else {
 		$data['error'] = 'An error occurred. You may have put in the wrong email or password. Or maybe the Path of Exile site is down. I don\'t really know but good luck tryin\' again!';
 	}

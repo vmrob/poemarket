@@ -8,7 +8,7 @@ class Template {
 	}
 
 	function __get($name) {
-		return $this->args[$name];
+		return isset($this->args[$name]) ? $this->args[$name] : NULL;
 	}
 
 	function __invoke() {

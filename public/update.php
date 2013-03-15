@@ -11,7 +11,7 @@ if ($_->config['update_secret'] && isset($_GET['secret']) && $_GET['secret'] == 
 		$old_ops = require(dirname(dirname(__FILE__)).'/support/update_operations.inc.php');
 		exec($_->config['update_command']);
 		if (needs_update_operations()) {
-			sleep(10); // wait a moment to let other scripts finish
+			sleep(20); // wait a moment to let other scripts finish
 			perform_update_operations();
 		}
 		site_unlock();

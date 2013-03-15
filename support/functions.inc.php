@@ -80,4 +80,71 @@ function perform_update_operations() {
 	
 	set_key_value('last_update_operation_index', count($ops) - 1);
 }
+
+function http_request($url, $params = NULL, $cookies = array(), $redirects = 0) {
+	$ch = curl_init();
+	
+	$cookie_strings = array();
+	foreach ($cookies as $k => $v) {
+		$cookie_strings[] = urlencode($k).'='.urlencode($v);
+	}
+	$cookie_string = implode('; ', $cookie_strings);	
+
+	curl_setopt_array($ch, array(
+		CURLOPT_URL => $url,
+		CURLOPT_POST => ($params === NULL ? 0 : 1),
+		CURLOPT_HEADER => 0,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_TIMEOUT => 5,
+		CURLOPT_POSTFIELDS => $params,
+		CURLOPT_HEADER => 1,
+		CURLOPT_COOKIE => $cookie_string,
+	));
+
+	$result = curl_exec($ch);
+	$info   = curl_getinfo($ch);
+
+	curl_close($ch);
+	
+	if (!$info) {
+		return NULL;
+	}
+
+	$parts = preg_split('/(\r\n|\n){2,}/', $result, 2);
+	while ($parts[0] == 'HTTP/1.1 100 Continue') {
+		$parts = preg_split('/(\r\n|\n){2,}/', $parts[1], 2);
+	}
+	
+	$header_lines = preg_split('/(\r\n|\n)/', $parts[0]);
+	array_shift($header_lines);
+	$headers = array();
+	foreach ($header_lines as $line) {
+		$p = explode(':', $line, 2);
+		$name = trim($p[0]);
+		$value = trim($p[1]);
+		if (!isset($headers[$name])) {
+			$headers[$name] = array();
+		}
+		$headers[$name][] = $value;
+	}
+
+	$content = $parts[1];
+	
+	if (isset($headers['Set-Cookie'])) {
+		foreach ($headers['Set-Cookie'] as $c) {
+			$parts = explode(';', $c, 2);
+			$parts = explode('=', $parts[0], 2);
+			$cookies[urldecode($parts[0])] = urldecode($parts[1]);
+		}
+	}
+
+	if ($info['http_code'] == 302) {
+		return $redirects < 3 ? http_request($info['redirect_url'], NULL, $cookies, $redirects + 1) : NULL;
+	}
+
+	$info['headers'] = $headers;
+	$info['content'] = $content;
+	$info['cookies'] = $cookies;
+	return $info;
+}
 ?>
