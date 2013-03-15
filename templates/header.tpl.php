@@ -18,6 +18,19 @@
 				<li<?= basename($_SERVER['SCRIPT_NAME']) == 'index.php' ? ' class="active"' : '' ?>><a href="index.php">Home</a></li>
 				<li<?= basename($_SERVER['SCRIPT_NAME']) == 'login.php' ? ' class="active"' : '' ?>><a href="login.php">Log In</a></li>
 			</ul>
+			<div class="pull-right navbar-text">
+				<?php
+				if ($this->logged_in_user) {
+					?>
+					Welcome, <b><?= htmlspecialchars($this->logged_in_user['user_name']) ?></b>.
+					<?php
+				} else {
+					?>
+					Not logged in.
+					<?php
+				}
+				?>
+			</div>
 		</div>
 	</div>
 </div>

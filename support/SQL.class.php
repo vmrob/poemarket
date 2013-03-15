@@ -11,6 +11,18 @@ class SQL {
 		 $this->queries     = array();
 	}
 
+	function start_transaction() {
+		$this->query('START TRANSACTION');
+	}
+
+	function commit() {
+		$this->query('COMMIT');
+	}
+
+	function rollback() {
+		$this->query('ROLLBACK');
+	}
+
 	function select_db($database) {
 		mysql_select_db($database, $this->db_link) or $this->throw_error('select_db');
 	}

@@ -7,6 +7,9 @@ function render_page($template, $title, $args = array()) {
 		'site_name'            => $_->config['site_name'],
 		'site_revision_number' => $_->config['site_revision_number'],
 		'site_revision_time'   => $_->config['site_revision_time'],
+		'logged_in_user'       => $_->user ? array_intersect_key($_->user, array(
+										'user_name' => 1,
+									)) : NULL,
 	), $args);
 
 	Template::Render('header',  $args);
@@ -46,19 +49,19 @@ function post_value_attrib($name, $default = NULL) {
 
 function get_key_value($key, $default = NULL) {
 	global $_;
-	$result = $_->SQL->query("SELECT value FROM {$_->config['mysql_table_prefix']}key_value WHERE `key` = '".$_->SQL->escape_string($key)."'");
-	return $_->SQL->num_rows($result) < 1 ? $default : $_->SQL->result($result, 0);
+	$result = $_->sql->query("SELECT value FROM {$_->config['mysql_table_prefix']}key_value WHERE `key` = '{$_->sql->escape_string($key)}'");
+	return $_->sql->num_rows($result) < 1 ? $default : $_->sql->result($result, 0);
 }
 
 function set_key_value($key, $value) {
 	global $_;
-	$_->SQL->query("INSERT INTO {$_->config['mysql_table_prefix']}key_value (`key`, `value`) VALUES ('".$_->SQL->escape_string($key)."', '".$_->SQL->escape_string($value)."') ON DUPLICATE KEY UPDATE `value` = '".$_->SQL->escape_string($value)."'");
+	$_->sql->query("INSERT INTO {$_->config['mysql_table_prefix']}key_value (`key`, `value`) VALUES ('{$_->sql->escape_string($key)}', '{$_->sql->escape_string($value)}') ON DUPLICATE KEY UPDATE `value` = '{$_->sql->escape_string($value)}'");
 }
 
 function last_update_operation_index() {
 	global $_;
-	$result = $_->SQL->query("SELECT table_name FROM information_schema.tables WHERE table_schema = '".$_->SQL->escape_string($_->config['mysql_database'])."' AND table_name = '{$_->config['mysql_table_prefix']}key_value'");
-	if ($_->SQL->num_rows($result) < 1) {
+	$result = $_->sql->query("SELECT table_name FROM information_schema.tables WHERE table_schema = '{$_->sql->escape_string($_->config['mysql_database'])}' AND table_name = '{$_->config['mysql_table_prefix']}key_value'");
+	if ($_->sql->num_rows($result) < 1) {
 		// table doesn't exist. assume database isn't initialized
 		return -1;
 	}

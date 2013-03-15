@@ -12,6 +12,7 @@ if ($lock_html = site_lock_html()) {
 	die($lock_html);
 }
 
+// create the application instance
 $config = require('config.inc.php');
 $_ = new Application($config);
 
@@ -29,4 +30,7 @@ if (needs_update_operations()) {
 	}
 	die('That\'s odd. Hopefully this message will go away soon...');
 }
+
+// see if the user is logged in
+$_->check_authentication();
 ?>
