@@ -19,6 +19,15 @@ function render_page($template, $title, $args = array()) {
 	die(); // once we render the page, we're done
 }
 
+function require_login() {
+	global $_;
+	
+	if (!$_->user) {
+		$data = array('header' => 'Unauthorized', 'message' => 'You have to be logged in to do that.');
+		render_page('system_message', $data['header'], $data);
+	}
+}
+
 function try_site_lock($lock_html) {
 	$lock_file = fopen(dirname(__FILE__).'/lock.html', 'x');
 
