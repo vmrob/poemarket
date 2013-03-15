@@ -1,5 +1,5 @@
 <?php
-define('UPDATE_HTML', 'Eek! You caught us doing something embarrassing! The site\'s being updated, but it\'ll be done soon. Sorry you had to see us this way.');
+define('UPDATE_HTML', 'How embarrassing! The site\'s being updated, but it\'ll be done soon. Sorry you had to see us this way.');
 
 function __autoload($class) {
 	require_once $class.'.class.php';
