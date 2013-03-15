@@ -15,6 +15,8 @@ function render_page($template, $title, $args = array()) {
 	Template::Render('header',  $args);
 	Template::Render($template, $args);
 	Template::Render('footer',  $args);
+	
+	die(); // once we render the page, we're done
 }
 
 function try_site_lock($lock_html) {
