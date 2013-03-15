@@ -8,5 +8,6 @@
 </div>
 
 <script src="js/bootstrap.min.js"></script>
+<script src="js/poe-tooltips.js"></script>
 </body>
 </html>
