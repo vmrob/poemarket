@@ -31,3 +31,98 @@ body {
 	margin: 20px 0px;
 	color: #606060;
 }
+
+@font-face {
+	font-family: fontin-smallcaps;
+	src: url('http://webcdn.pathofexile.com/font/fontin-smallcaps-webfont.woff');
+}
+
+/* BEGIN TOOLTIP STYLING */
+
+.unloaded-poe-tooltip-container {
+	display: none;
+	background-color: rgba(0, 0, 0, 0.8);
+	font-family: fontin-smallcaps, Verdana, Arial, Helvetica, sans-serif;
+	color: #7f7f7f;
+	padding: 8px;
+}
+
+.poe-tooltip {
+	max-width: 500px;
+}
+
+.poe-tooltip > .head {
+	background-repeat: repeat-x;
+	text-align: center;
+	font-family: fontin-smallcaps, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 19px;
+	line-height: 19px;
+	position: relative;
+}
+
+.poe-gem-tooltip > .head > .head-left {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+
+.poe-gem-tooltip > .head > .head-right {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+
+.poe-tooltip > .body {
+	background-color: rgba(0, 0, 0, 0.8);
+	font-family: fontin-smallcaps, Verdana, Arial, Helvetica, sans-serif;
+	color: #7f7f7f;
+	padding: 4px 10px;
+	text-align: center;
+	font-size: 14.3px;
+	line-height: 18.25px;
+}
+
+.poe-tooltip .value {
+	color: #ffffff;
+}
+
+.poe-tooltip > .body > hr {
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 8px;
+	border: 0px;
+	margin: 1px;
+}
+
+.poe-gem-tooltip > .head {
+	background-image: url('http://webcdn.pathofexile.com/image/Art/2DArt/UIImages/Items/ItemHeaderGemMiddle.png?key=e33390da3abfc19c4c371a22dd891fa7');
+	color: #1ba29b;
+	height: 27px; /* image height - padding */
+	padding: 7px 45px 0px 45px;
+}
+
+.poe-gem-tooltip > .head > .head-left {
+	background-image: url('http://webcdn.pathofexile.com/image/Art/2DArt/UIImages/Items/ItemHeaderGemLeft.png?key=deaad7222b7668d16bf51ac0f8243aa1');
+	width: 29px;
+	height: 34px;
+}
+
+.poe-gem-tooltip > .head > .head-right {
+	background-image: url('http://webcdn.pathofexile.com/image/Art/2DArt/UIImages/Items/ItemHeaderGemRight.png?key=b3c8ef992798c667128d65467784ab4f');
+	width: 29px;
+	height: 34px;
+}
+
+.poe-gem-tooltip > .body > hr {
+	background-image: url('http://webcdn.pathofexile.com/image/Art/2DArt/UIImages/Items/SeparatorGem.png?key=703a708df7bca8c4a55b9a3cf9b11256');
+}
+
+.poe-gem-tooltip > .body > .description {
+	color: #1ba29b;
+}
+
+.poe-gem-tooltip > .body > .explicit-mod {
+	color: #8888ff;
+}
+
+/* END TOOLTIP STYLING */
