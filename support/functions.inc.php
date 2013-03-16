@@ -95,7 +95,7 @@ function perform_update_operations() {
 	set_key_value('last_update_operation_index', count($ops) - 1);
 }
 
-function http_request($url, $params = NULL, $cookies = array(), $redirects = 0) {
+function http_request($url, $params = NULL, $cookies = array(), $max_redirects = 3) {
 	$ch = curl_init();
 	
 	$cookie_strings = array();
@@ -153,7 +153,7 @@ function http_request($url, $params = NULL, $cookies = array(), $redirects = 0) 
 	}
 
 	if ($info['http_code'] == 302) {
-		return $redirects < 3 ? http_request($info['redirect_url'], NULL, $cookies, $redirects + 1) : NULL;
+		return $max_redirects > 0 ? http_request($info['redirect_url'], NULL, $cookies, $max_redirects - 1) : NULL;
 	}
 
 	$info['headers'] = $headers;
