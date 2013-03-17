@@ -5,7 +5,6 @@
 			<ul class="nav nav-tabs">
 				<li class="active"><a href="#currency-tab" data-toggle="tab">Currency</a></li>
 				<li><a href="#gems-tab" data-toggle="tab">Gems</a></li>
-				<li><a href="#items-tab" data-toggle="tab">Items</a></li>
 			</ul>
 		</div>
 		<div class="tab-content span10">
@@ -15,9 +14,11 @@
 						<?php
 						for ($i = 0; $i < 23; ++$i) {
 							?>
-							<li><a href="#" class="thumbnail">
-								<img data-src="holder.js/50x50" alt="test image">
-							</a></li>
+							<li>
+								<a href="#" class="thumbnail">
+									<img src="http://pool.pathofexilewiki.com/w/images/Orb_of_Alchemy_icon.png" class="currency-market-thumbnail" alt="test image">
+								</a>
+							</li>
 							<?php
 						}
 						?>
@@ -45,9 +46,9 @@
 						for ($i = 0; $i < 23; ++$i) {
 							?>
 							<tr>
-								<td><img data-src="holder.js/20x20" class="gem-table" alt="skill gem"><a href="#">Skill Gem <?= $i ?></a></td>
-								<td><img data-src="holder.js/20x20" class="gem-table" alt="skill gem"><a href="#">Skill Gem <?= $i ?></a></td>
-								<td><img data-src="holder.js/20x20" class="gem-table" alt="skill gem"><a href="#">Skill Gem <?= $i ?></a></td>
+								<td><img src="http://pool.pathofexilewiki.com/w/images/Orb_of_Alchemy_icon.png" class="gem-market-thumbnail" alt="skill gem"><a href="#">Skill Gem <?= $i ?></a></td>
+								<td><img src="http://pool.pathofexilewiki.com/w/images/Orb_of_Alchemy_icon.png" class="gem-market-thumbnail" alt="skill gem"><a href="#">Skill Gem <?= $i ?></a></td>
+								<td><img src="http://pool.pathofexilewiki.com/w/images/Orb_of_Alchemy_icon.png" class="gem-market-thumbnail" alt="skill gem"><a href="#">Skill Gem <?= $i ?></a></td>
 							</tr>
 							<?php
 						}
@@ -67,9 +68,7 @@
 							<button class="btn btn-large half-width-btn">Sell</button>
 						</div>
 					</div>
-				</div>			</div>
-			<div class="tab-pane" id="items-tab">
-				<p>items tab</p>
+				</div>			
 			</div>
 		</div>
 	</div>

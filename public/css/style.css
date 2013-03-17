@@ -37,6 +37,29 @@ body {
 	src: url('http://webcdn.pathofexile.com/font/fontin-smallcaps-webfont.woff');
 }
 
+/* BEGIN MARKET THUMBNAIL STYLING */
+
+.gem-market-thumbnail {
+	width: 25px;
+	height: 25px;
+}
+
+.currency-market-thumbnail {
+	width: 50px;
+	height: 50px;
+}
+
+/* END MARKET THUMBNAIL STYLING */
+
+/* BEGIN SETTINGS STYLING */
+
+.currency-settings-thumbnail {
+	width: 40px;
+	height: 40px;
+}
+
+/* END SETTINGS STYLING */
+
 /* BEGIN TOOLTIP STYLING */
 
 .unloaded-poe-tooltip-container {
