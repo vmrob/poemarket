@@ -32,9 +32,9 @@ body {
 	color: #606060;
 }
 
-@font-face {
-	font-family: fontin-smallcaps;
-	src: url('http://webcdn.pathofexile.com/font/fontin-smallcaps-webfont.woff');
+.page-header > .pull-right {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 /* BEGIN MARKET THUMBNAIL STYLING */
@@ -61,6 +61,11 @@ body {
 /* END SETTINGS STYLING */
 
 /* BEGIN TOOLTIP STYLING */
+
+@font-face {
+	font-family: fontin-smallcaps;
+	src: url('http://webcdn.pathofexile.com/font/fontin-smallcaps-webfont.woff');
+}
 
 .unloaded-poe-tooltip-container {
 	display: none;
