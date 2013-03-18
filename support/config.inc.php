@@ -54,11 +54,11 @@ $config = array(
 
 	/*
 		If the 'update_secret' configuration option is set, this command will be executed when update.php 
-		receives a request using the correct secret. It's executed from the directory of update.php. If 
-		you're using a git repo, you probably don't need to change this. Update operations are performed 
-		following this, so don't background anything crucial.
+		receives a request using the correct secret. If you're using a git repo, you probably don't need 
+		to change this. Update operations are performed following this, so don't background anything 
+		crucial.
 	*/
-	'update_command' => 'cd ../ && git checkout master && git pull origin master && git clean -fd',
+	'update_command' => 'cd `git rev-parse --show-toplevel` && git checkout master && git pull origin master && git clean -fd',
 );
 
 /*

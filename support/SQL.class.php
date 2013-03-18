@@ -73,7 +73,7 @@ class SQL {
 		$output = array();
 
 		foreach ($array as $field_name => $data) {
-			$output[] = "`{$field_name}` = '".$this->real_escape_string($data)."'"; 
+			$output[] = "`{$field_name}` = '{$this->real_escape_string($data)}'"; 
 		}
 
 		return implode(', ', $output);
