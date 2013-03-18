@@ -113,7 +113,7 @@ while (true) {
 		update_row('worker_tasks', 'task_id', $task['task_id'], array(
 			'task_worker_name' => $config['worker_name'],
 			'task_status'      => 'assigned',
-			'task_status_text' => "Started. (Assigned to {$config['worker_name']}.)",
+			'task_status_text' => "Started.",
 			'task_status_time' => time(),
 		));
 	}

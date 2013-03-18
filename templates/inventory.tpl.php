@@ -3,7 +3,7 @@
 
 	function update_inventory_update_status(data) {
 		if (data.status == 'waiting') {
-			$('#inventory-update-status').text(data.status_text + ' (Position in queue: ' + data.queue_position + ')');
+			$('#inventory-update-status').text(data.status_text);
 			var percentage = 10 + (80 - 80 * (data.queue_position / initial_queue_position));
 			$('#inventory-update-progress').css('width', percentage + '%');
 		} else if (data.status == 'assigned') {
@@ -16,6 +16,7 @@
 		} else if (data.status == 'completed') {
 			$('#inventory-update-status').text('Update complete! Refresh the page to see it.');
 			$('#inventory-update-progress').css('width', '100%');
+			$('#inventory-update-container > .progress').removeClass('active');
 		}
 
 		if (data.status == 'waiting' || data.status == 'assigned') {
@@ -43,7 +44,7 @@
 			$('#inventory-update-progress').css('width', '5%');
 			$('#inventory-update-container').slideDown();
 			
-			$.get('ajax/inventoryupdate.php?initiate', { initiate: 1 }, function(response, status, request) {
+			$.get('ajax/inventoryupdate.php?initiate', function(response, status, request) {
 				if (status != 'success') {
 					$('#inventory-update-status').text('Failed to initiate update. Please try again later.');
 					$('#inventory-update-progress').css('width', '0%');
