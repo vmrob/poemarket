@@ -88,13 +88,13 @@ body {
 	position: relative;
 }
 
-.poe-gem-tooltip > .head > .head-left {
+.poe-tooltip > .head > .head-left {
 	position: absolute;
 	left: 0px;
 	top: 0px;
 }
 
-.poe-gem-tooltip > .head > .head-right {
+.poe-tooltip > .head > .head-right {
 	position: absolute;
 	right: 0px;
 	top: 0px;
@@ -120,6 +120,10 @@ body {
 	height: 8px;
 	border: 0px;
 	margin: 1px;
+}
+
+.poe-tooltip > .body > .explicit-mod {
+	color: #8888ff;
 }
 
 .poe-gem-tooltip > .head {
@@ -149,8 +153,27 @@ body {
 	color: #1ba29b;
 }
 
-.poe-gem-tooltip > .body > .explicit-mod {
-	color: #8888ff;
+.poe-currency-tooltip > .head {
+	background-image: url('http://webcdn.pathofexile.com/image/Art/2DArt/UIImages/Items/ItemHeaderCurrencyMiddle.png?key=1f1c6514cc75c7fe4b39e1b5d7f21e68');
+	color: #aa9e82;
+	height: 27px; /* image height - padding */
+	padding: 7px 45px 0px 45px;
+}
+
+.poe-currency-tooltip > .head > .head-left {
+	background-image: url('http://webcdn.pathofexile.com/image/Art/2DArt/UIImages/Items/ItemHeaderCurrencyLeft.png?key=1d80181b099621c97f51ad1ff9e4ac03');
+	width: 29px;
+	height: 34px;
+}
+
+.poe-currency-tooltip > .head > .head-right {
+	background-image: url('http://webcdn.pathofexile.com/image/Art/2DArt/UIImages/Items/ItemHeaderCurrencyRight.png?key=05ceecd6955ee18490dfa1163bc2988f');
+	width: 29px;
+	height: 34px;
+}
+
+.poe-currency-tooltip > .body > hr {
+	background-image: url('http://webcdn.pathofexile.com/image/Art/2DArt/UIImages/Items/SeparatorCurrency.png?key=19cfb1036bf223cd8cfb8e265c22c9e4');
 }
 
 /* END TOOLTIP STYLING */

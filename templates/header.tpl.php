@@ -18,7 +18,7 @@
 			if ($this->logged_in_user) {
 				?>
 				<ul class="nav">
-					<li<?= basename($_SERVER['SCRIPT_NAME']) == 'index.php' ? ' class="active"' : '' ?>><a href="index.php">Market</a></li>
+					<li<?= basename($_SERVER['SCRIPT_NAME']) == 'index.php' || basename($_SERVER['SCRIPT_NAME']) == 'market.php' ? ' class="active"' : '' ?>><a href="market.php">Market</a></li>
 					<li<?= basename($_SERVER['SCRIPT_NAME']) == 'inventory.php' ? ' class="active"' : '' ?>><a href="inventory.php">Inventory</a></li>
 					<li<?= basename($_SERVER['SCRIPT_NAME']) == 'settings.php' ? ' class="active"' : '' ?>><a href="settings.php">Settings</a></li>
 				</ul>

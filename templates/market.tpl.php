@@ -1,4 +1,3 @@
-<script src="js/holder.js"></script>
 <div class="container">
 	<div class="row">
 		<div class="tabbable tabs-left span2">
@@ -12,11 +11,11 @@
 				<div class="span6">
 					<ul class="thumbnails">
 						<?php
-						for ($i = 0; $i < 23; ++$i) {
+						foreach ($this->currencies as $currency) {
 							?>
 							<li>
-								<a href="#" class="thumbnail">
-									<img src="http://pool.pathofexilewiki.com/w/images/Orb_of_Alchemy_icon.png" class="currency-market-thumbnail" alt="test image">
+								<a href="#" class="thumbnail poe-item" data-poe-tooltip="base:<?= $currency['base_item_id'] ?>">
+									<img src="<?= $currency['display_info']->image ?>" class="currency-market-thumbnail" alt="test image">
 								</a>
 							</li>
 							<?php
