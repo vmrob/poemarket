@@ -37,6 +37,10 @@ body {
 	margin-bottom: 10px;
 }
 
+.line-input input, .line-input select {
+	margin-bottom: 0px;
+}
+
 /* BEGIN MARKET THUMBNAIL STYLING */
 
 .gem-market-thumbnail {
@@ -50,15 +54,6 @@ body {
 }
 
 /* END MARKET THUMBNAIL STYLING */
-
-/* BEGIN SETTINGS STYLING */
-
-.currency-settings-thumbnail {
-	width: 40px;
-	height: 40px;
-}
-
-/* END SETTINGS STYLING */
 
 /* BEGIN TOOLTIP STYLING */
 

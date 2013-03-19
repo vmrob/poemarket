@@ -34,7 +34,7 @@ $(function() {
 
 		$tt.css('z-index', '10000');
 	};
-	$('.poe-item').hover(function() {
+	$(document).on('mouseenter', '.poe-item', function() {
 		// on enter
 		if (!$(this).data('poe-tooltip-element')) {
 			// tooltip doesn't exist yet. create it
@@ -52,7 +52,8 @@ $(function() {
 		}
 		layOutTooltip($(this));
 		$(this).data('poe-tooltip-element').show();
-	}, function() {
+	});
+	$(document).on('mouseleave', '.poe-item', function() {
 		// on leave
 		if ($(this).data('poe-tooltip-element')) {
 			$(this).data('poe-tooltip-element').hide();
