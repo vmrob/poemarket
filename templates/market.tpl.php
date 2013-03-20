@@ -16,9 +16,7 @@
 					<?php
 					foreach ($this->currencies as $currency) {
 						?>
-						<a href="#" class="poe-item" data-poe-tooltip="base:<?= $currency['base_item_id'] ?>">
-							<img src="<?= $currency['display_info']->image ?>" />
-						</a>
+						<a href="#"><img src="<?= $currency['display_info']->image ?>" class="poe-item" data-poe-tooltip="base:<?= $currency['base_item_id'] ?>"/></a>
 						<?php
 					}
 					?>
