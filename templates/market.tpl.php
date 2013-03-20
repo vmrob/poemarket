@@ -1,4 +1,8 @@
 <div class="container">
+	<div class="page-header">
+		<h1>Market</h1>
+	</div>
+
 	<div class="row">
 		<div class="tabbable tabs-left span2">
 			<ul class="nav nav-tabs">
@@ -9,19 +13,15 @@
 		<div class="tab-content span10">
 			<div class="tab-pane active row" id="currency-tab">
 				<div class="span6">
-					<ul class="thumbnails">
-						<?php
-						foreach ($this->currencies as $currency) {
-							?>
-							<li>
-								<a href="#" class="thumbnail poe-item" data-poe-tooltip="base:<?= $currency['base_item_id'] ?>">
-									<img src="<?= $currency['display_info']->image ?>" class="currency-market-thumbnail" alt="test image">
-								</a>
-							</li>
-							<?php
-						}
+					<?php
+					foreach ($this->currencies as $currency) {
 						?>
-					</ul>
+						<a href="#" class="poe-item" data-poe-tooltip="base:<?= $currency['base_item_id'] ?>">
+							<img src="<?= $currency['display_info']->image ?>" />
+						</a>
+						<?php
+					}
+					?>
 				</div>
 				<div class="span4">
 					<div class="well well-large">
@@ -32,8 +32,8 @@
 							<tr><td>Last Week:</td><td>0.15 GCP</td></tr>
 						</table>
 						<div class="text-center">
-							<button class="btn btn-large half-width-btn">Buy</button>
-							<button class="btn btn-large half-width-btn">Sell</button>
+							<button class="btn btn-primary btn-block">Buy</button>
+							<button class="btn btn-block">Sell</button>
 						</div>
 					</div>
 				</div>
@@ -45,9 +45,9 @@
 						for ($i = 0; $i < 23; ++$i) {
 							?>
 							<tr>
-								<td><img src="http://pool.pathofexilewiki.com/w/images/Orb_of_Alchemy_icon.png" class="gem-market-thumbnail" alt="skill gem"><a href="#">Skill Gem <?= $i ?></a></td>
-								<td><img src="http://pool.pathofexilewiki.com/w/images/Orb_of_Alchemy_icon.png" class="gem-market-thumbnail" alt="skill gem"><a href="#">Skill Gem <?= $i ?></a></td>
-								<td><img src="http://pool.pathofexilewiki.com/w/images/Orb_of_Alchemy_icon.png" class="gem-market-thumbnail" alt="skill gem"><a href="#">Skill Gem <?= $i ?></a></td>
+								<td><img src="http://webcdn.pathofexile.com/image/Art/2DItems/Gems/Fireball.png" /><a href="#">Skill Gem <?= $i ?></a></td>
+								<td><img src="http://webcdn.pathofexile.com/image/Art/2DItems/Gems/Fireball.png" /><a href="#">Skill Gem <?= $i ?></a></td>
+								<td><img src="http://webcdn.pathofexile.com/image/Art/2DItems/Gems/Fireball.png" /><a href="#">Skill Gem <?= $i ?></a></td>
 							</tr>
 							<?php
 						}
@@ -63,8 +63,8 @@
 							<tr><td>Last Week:</td><td>0.15 GCP</td></tr>
 						</table>
 						<div class="text-center">
-							<button class="btn btn-large half-width-btn">Buy</button>
-							<button class="btn btn-large half-width-btn">Sell</button>
+							<button class="btn btn-primary btn-block">Buy</button>
+							<button class="btn btn-block">Sell</button>
 						</div>
 					</div>
 				</div>			
