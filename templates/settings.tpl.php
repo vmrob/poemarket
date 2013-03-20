@@ -59,7 +59,7 @@ function calculate_relative_values() {
 				relative_values[a_pool][id] *= a_scale;
 			}
 			for (var id in relative_values[b_pool]) {
-				relative_values[a_pool].push({ id: relative_values[b_pool][id] * b_scale });
+				relative_values[a_pool][id] = relative_values[b_pool][id] * b_scale;
 			}
 			relative_values.splice(b_pool, 1);
 		} else if (a_pool >= 0) {
