@@ -81,13 +81,13 @@ function calculate_relative_values() {
 }
 
 function update_associations_list() {
-	$('#currency-associations').html('');
+	$('.currency-associations').html('');
 	
 	for (var i = 0; i < associations.length; ++i) {
 		var association = associations[i];
 		var $line = $('<div data-association="' + i + '">' + association.a_quantity + ' ' + currencies[association.a_id].name + ' = ' + association.b_quantity + ' ' + currencies[association.b_id].name + '</div>');
-		$line.append('<button class="btn remove-association-button">Remove</button>');
-		$('#currency-associations').append($line);
+		$line.append(' <a class="remove-association-button" href="#"><i class="icon-minus-sign"></i></a>');
+		$('#currency-associations-column' + ((i % 3) + 1)).append($line);
 	}
 }
 
@@ -131,50 +131,74 @@ function reset_association_input() {
 	$('#currency-b-quantity').val('1');
 }
 
-function update_relative_value_table() {
-	$('#relative-value-table').html('');
+function gcd(a, b) {
+	return (b == 0 ? a : gcd(b, a % b));
+}
+
+function update_exchange_table() {
+	$('#currency-exchange-table').html('');
 	
 	var arrangement = [];
 
 	var $head = $('<tr />');
-	$head.append('<td />');
+	$head.append('<th />');
 
 	for (var i = 0; i < relative_values.length; ++i) {
+		var ids = [];
 		for (var id in relative_values[i]) {
+			ids.push(id);
+		}
+		ids.sort(function(a, b) {
+			return relative_values[i][b] - relative_values[i][a];
+		});
+		arrangement = arrangement.concat(ids);
+	}
+	
+	for (var id in currencies) {
+		if (arrangement.indexOf(id) < 0) {
 			arrangement.push(id);
-			
-			var $img = $('<img class="poe-item" data-poe-tooltip="base:' + id + '" />').attr('src', currencies[id].image);
-			$head.append($('<td />').append($img));
 		}
 	}
 	
-	$('#relative-value-table').append($head);
+	for (var i = 0; i < arrangement.length; ++i) {
+		var id = arrangement[i];
+		var $img = $('<img class="poe-item" data-poe-tooltip="base:' + id + '" />').attr('src', currencies[id].image);
+		$head.append($('<th />').append($img));
+	}
+	
+	$('#currency-exchange-table').append($head);
 
 	var pool = 0;
 	for (var i = 0; i < arrangement.length; ++i) {
 		var $row = $('<tr />');
-		
+
 		var id = arrangement[i];
 		
 		var $img = $('<img class="poe-item" data-poe-tooltip="base:' + id + '" />').attr('src', currencies[id].image);
-		$row.append($('<td />').append($img));
+		$row.append($('<th />').append($img));
 		
-		while (!(id in relative_values[pool])) { ++pool; }
+		if (pool >= 0) {
+			while (pool < relative_values.length && !(id in relative_values[pool])) { ++pool; }
+			if (pool >= relative_values.length) { pool = -1; }
+		}
 		
 		for (var j = 0; j < arrangement.length; ++j) {
 			if (i == j) {
 				// same currency
 				$row.append('<td></td>');
-			} else if (arrangement[j] in relative_values[pool]) {
+			} else if (pool >= 0 && arrangement[j] in relative_values[pool]) {
 				// we have a relation
-				$row.append('<td>' + relative_values[pool][id] + ':' + relative_values[pool][arrangement[j]] + '</td>');
+				var a = relative_values[pool][id];
+				var b = relative_values[pool][arrangement[j]];
+				var d = gcd(a, b);
+				$row.append('<td>' + (a / d) + ':' + (b / d) + '</td>');
 			} else {
 				// no relation
-				$row.append('<td>?</td>');
+				$row.append('<td class="unknown">?</td>');
 			}
 		}
 		
-		$('#relative-value-table').append($row);
+		$('#currency-exchange-table').append($row);
 	}
 }
 
@@ -182,16 +206,19 @@ function update_everything() {
 	calculate_relative_values();
 	update_associations_list();
 	update_association_options();
-	update_relative_value_table();
+	update_exchange_table();
 }
 
 $(function() {
 	$('#add-currency-association').click(function() {
+		var a_quantity = $('#currency-a-quantity').val();
+		var b_quantity = $('#currency-b-quantity').val();
+		
 		if (
 			!$('#currency-a-id').val() || 
 			!$('#currency-b-id').val() || 
-			!$.isNumeric($('#currency-a-quantity').val()) || $('#currency-a-quantity').val() <= 0 ||
-			!$.isNumeric($('#currency-b-quantity').val()) || $('#currency-b-quantity').val() <= 0
+			!$.isNumeric(a_quantity) || a_quantity <= 0 || Math.round(a_quantity) != a_quantity ||
+			!$.isNumeric(b_quantity) || b_quantity <= 0 || Math.round(b_quantity) != b_quantity
 		) {
 			alert('Check your input.');
 			return;
@@ -222,15 +249,16 @@ $(document).on('click', '.remove-association-button', function() {
 	associations.splice(index, 1);
 	
 	update_everything();
+	
+	return false;
 });
 </script>
 
 <div class="container">
 	<div class="page-header">
-		<h1>Settings</h1>
+		<h1>Currency Exchange Values</h1>
 	</div>
-	<h3>Currency Weights</h3>
-	<p>Make associations until the table below is complete.</p>
+	<p class="lead">Here you can set your currency exchange rate. Simply create associations to complete the table below.</p>
 	<div class="line-input">
 		<input type="text" class="input-mini" id="currency-a-quantity" placeholder="#" />
 		<select id="currency-a-id">
@@ -242,12 +270,15 @@ $(document).on('click', '.remove-association-button', function() {
 				<?php
 			}
 			?>
-		</select>
-		=
+		</select> =
 		<input type="text" class="input-mini" id="currency-b-quantity" placeholder="#" />
 		<select id="currency-b-id"></select>
 		<button class="btn" id="add-currency-association"><i class="icon-plus"></i></button>
 	</div>
-	<div id="currency-associations"></div>
-	<table id="relative-value-table"></table>
+	<div class="row">
+		<div id="currency-associations-column1" class="currency-associations span4"></div>
+		<div id="currency-associations-column2" class="currency-associations span4"></div>
+		<div id="currency-associations-column3" class="currency-associations span4"></div>
+	</div>
+	<table id="currency-exchange-table" class="table table-condensed table-bordered"></table>
 </div>

@@ -41,6 +41,29 @@ body {
 	margin-bottom: 0px;
 }
 
+.currency-associations {
+	font-size: 12px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#currency-exchange-table th {	
+	text-align: center;
+}
+
+#currency-exchange-table th img {
+	width: 24px;
+	height: 24px;
+}
+
+#currency-exchange-table td {
+	text-align: center;
+}
+
+#currency-exchange-table .unknown {
+	font-weight: bold;
+}
+
 /* BEGIN MARKET THUMBNAIL STYLING */
 
 .gem-market-thumbnail {
