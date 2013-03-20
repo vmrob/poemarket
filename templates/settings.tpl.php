@@ -222,6 +222,8 @@ function update_everything() {
 }
 
 $(function() {
+	$('#settings-save-button').attr('disabled', 'disabled');
+
 	$('#add-currency-association').click(function() {
 		var a_quantity = $('#currency-a-quantity').val();
 		var b_quantity = $('#currency-b-quantity').val();
@@ -235,6 +237,8 @@ $(function() {
 			alert('Check your input.');
 			return;
 		}
+
+		$('#settings-save-button').removeAttr('disabled');
 
 		associations.push({
 			"a_id": $('#currency-a-id').val(),
@@ -252,10 +256,16 @@ $(function() {
 	});
 	
 	reset_association_input();
-	update_everything();
+	update_everything();	
+
+	$('#settings-save-button').click(function() {
+		alert('Sorry, this is still under construction.');
+	});
 });
 
 $(document).on('click', '.remove-association-button', function() {
+	$('#settings-save-button').removeAttr('disabled');
+
 	var index = $(this).parent().data('association');
 	
 	associations.splice(index, 1);
@@ -268,7 +278,9 @@ $(document).on('click', '.remove-association-button', function() {
 
 <div class="container">
 	<div class="page-header">
-		<h1>Currency Exchange</h1>
+		<h1 class="pull-left">Settings</h1>
+		<button class="btn btn-primary btn-large pull-right" id="settings-save-button">Save</button>
+		<div class="clearfix"></div>
 	</div>
 	<p class="lead">Here you can set your currency exchange values. Simply create associations to complete the table below.</p>
 	<div class="line-input">
