@@ -14,7 +14,17 @@ uasort($currency_data, 'currency_name_cmp');
 
 <script>
 var currencies = <?= json_encode($currency_data) ?>;
-var associations = [];
+var associations = [
+	{a_id:"65", a_quantity:"20", b_id:"67", b_quantity:"1"}, {a_id:"66", a_quantity:"20", b_id:"64", b_quantity:"1"}, 
+	{a_id:"60", a_quantity:"5", b_id:"64", b_quantity:"4"}, {a_id:"60", a_quantity:"5", b_id:"61", b_quantity:"2"}, 
+	{a_id:"61", a_quantity:"1", b_id:"58", b_quantity:"1"}, {a_id:"67", a_quantity:"6", b_id:"50", b_quantity:"1"}, 
+	{a_id:"51", a_quantity:"3", b_id:"63", b_quantity:"1"}, {a_id:"59", a_quantity:"1", b_id:"52", b_quantity:"8"}, 
+	{a_id:"56", a_quantity:"3", b_id:"67", b_quantity:"2"}, {a_id:"55", a_quantity:"20", b_id:"53", b_quantity:"1"}, 
+	{a_id:"62", a_quantity:"1", b_id:"67", b_quantity:"1"}, {a_id:"64", a_quantity:"1", b_id:"54", b_quantity:"3"}, 
+	{a_id:"53", a_quantity:"2", b_id:"63", b_quantity:"1"}, {a_id:"57", a_quantity:"1", b_id:"54", b_quantity:"1"}, 
+	{a_id:"67", a_quantity:"1", b_id:"64", b_quantity:"8"}, {a_id:"57", a_quantity:"1", b_id:"52", b_quantity:"2"}, 
+	{a_id:"54", a_quantity:"1", b_id:"53", b_quantity:"4"}
+];
 var relative_values = [];
 
 function calculate_relative_values() {
@@ -65,17 +75,19 @@ function calculate_relative_values() {
 		} else if (a_pool >= 0) {
 			// add b to a's pool
 			var a_scale = association.a_quantity;
+			var a_value = relative_values[a_pool][association.a_id] * association.b_quantity;
 			for (var id in relative_values[a_pool]) {
 				relative_values[a_pool][id] *= a_scale;
 			}
-			relative_values[a_pool][association.b_id] = relative_values[a_pool][association.a_id] * association.b_quantity;
+			relative_values[a_pool][association.b_id] = a_value;
 		} else if (b_pool >= 0) {
 			// add a to b's pool
 			var b_scale = association.b_quantity;
+			var b_value = relative_values[b_pool][association.b_id] * association.a_quantity;
 			for (var id in relative_values[b_pool]) {
 				relative_values[b_pool][id] *= b_scale;
 			}
-			relative_values[b_pool][association.a_id] = relative_values[b_pool][association.b_id] * association.a_quantity;
+			relative_values[b_pool][association.a_id] = b_value;
 		}
 	}
 }
