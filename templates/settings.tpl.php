@@ -256,9 +256,9 @@ $(document).on('click', '.remove-association-button', function() {
 
 <div class="container">
 	<div class="page-header">
-		<h1>Currency Exchange Values</h1>
+		<h1>Currency Exchange</h1>
 	</div>
-	<p class="lead">Here you can set your currency exchange rate. Simply create associations to complete the table below.</p>
+	<p class="lead">Here you can set your currency exchange values. Simply create associations to complete the table below.</p>
 	<div class="line-input">
 		<input type="text" class="input-mini" id="currency-a-quantity" placeholder="#" />
 		<select id="currency-a-id">
